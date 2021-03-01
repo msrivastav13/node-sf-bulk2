@@ -38,9 +38,7 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
         const axiosresponse: AxiosResponse = await axois.post(endpoint, body, requestConfig);
         const queryResponse = axiosresponse.data as BulkQueryResponse;
-        return new Promise<BulkQueryResponse>((resolve: (arg0: BulkQueryResponse) => void) => {
-            resolve(queryResponse);
-        });
+        return queryResponse;
     }
 
     public async getBulkQueryJobInfo(jobId: string): Promise<BulkJobInfoResponse> {
@@ -48,9 +46,7 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const queryResponse = axiosresponse.data as BulkJobInfoResponse;
-        return new Promise<BulkJobInfoResponse>((resolve: (arg0: BulkJobInfoResponse) => void) => {
-            resolve(queryResponse);
-        });
+        return queryResponse;
     }
 
     public async getAllBulkQueryJobInfo(configInput?: BulkQueryConfig): Promise<AllBulkQueryJobsInfoResponse> {
@@ -70,9 +66,7 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json','application/json');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const queryResponse = axiosresponse.data as AllBulkQueryJobsInfoResponse;
-        return new Promise<AllBulkQueryJobsInfoResponse>((resolve: (arg0: AllBulkQueryJobsInfoResponse) => void) => {
-            resolve(queryResponse);
-        });
+        return queryResponse;
     }
 
     public async abortbulkQueryJob(jobId: string): Promise<BulkQueryResponse> {
@@ -83,9 +77,7 @@ export default class BulkAPI2 {
         });
         const axiosresponse: AxiosResponse = await axois.patch(endpoint, body, requestConfig);
         const queryResponse = axiosresponse.data as BulkJobInfoResponse;
-        return new Promise<BulkJobInfoResponse>((resolve: (arg0: BulkJobInfoResponse) => void) => {
-            resolve(queryResponse);
-        });
+        return queryResponse;
     }
 
     public async getBulkqueryResults(jobId: string, locator?: number, maxRecords?: number): Promise<string> {
@@ -103,8 +95,6 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const queryResponse = axiosresponse.data;
-        return new Promise<string>((resolve: (arg0: string) => void) => {
-            resolve(queryResponse);
-        });
+        return queryResponse;
     }
 }
