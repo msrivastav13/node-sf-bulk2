@@ -13,10 +13,14 @@
                 "<node_internals>/**"
             ],
             "preLaunchTask": "tsc: build - tsconfig.json",
-            "program": "${workspaceFolder}/src/index.ts",
+            "program": "${workspaceFolder}/examples/bulkquery/typescript/bulkquery.ts",
             "outFiles": [
-                "${workspaceFolder}/dist/*.js"
-            ]
+                "${workspaceFolder}/examples/bulkquery/typescript/dist/*.js"
+            ],
+            "env": {
+                "username": "mo+auraenabled@salesforce.com",
+                "password" : "Winterishere2021@tqjgWlrW8qDA9rfwcVgysRwK"
+            }
         }
     ]
 }

@@ -14,5 +14,3 @@ see the API Documentation
 
 ### Example usage
 
-TBD
-

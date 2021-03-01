@@ -1,4 +1,3 @@
-import BulkAPI2 from "./bulk2";
 import { AllBulkQueryJobsInfoResponse } from "./model/allBulkQueryJobsInfoResponse";
 import { BulkJobInfoResponse } from "./model/bulkJobInfoResponse";
 import { BulkQueryResponse } from "./model/queryResponse";
@@ -8,14 +7,15 @@ import { CONTENTTYPE, COLUMNDELIMITER, LINEENDING } from "./model/enum";
 import { QueryInput } from "./model/queryInput";
 
 export {
-  BulkAPI2,
   AllBulkQueryJobsInfoResponse,
   BulkJobInfoResponse,
   BulkQueryResponse,
   BulkQueryConfig,
-  Connection,
+  Connection as BulkAPI2Connection,
   CONTENTTYPE,
   COLUMNDELIMITER,
   LINEENDING,
   QueryInput,
 };
+
+export { default as BulkAPI2} from './bulk2';
