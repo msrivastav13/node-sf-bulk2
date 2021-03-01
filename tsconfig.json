@@ -7,12 +7,8 @@
     "outDir": "./dist",
     "strict": true,
     "moduleResolution": "node",
-    "rootDirs": [
-      "./"
-    ],
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "include": ["src/**/*"]
+    "forceConsistentCasingInFileNames": true
   }
 }
