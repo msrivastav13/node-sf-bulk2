@@ -1,4 +1,5 @@
 nodemon.json
 src/
 .vscode
-examples
+examples/
+docs/
