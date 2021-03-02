@@ -1,4 +1,4 @@
-# Examples of using the *node-sf-bulk2* libraries using Node.js Common JS Module
+# Examples of using the node-sf-bulk2 libraries using Node.js Common JS Module
 
 The example uses [jsforce](https://jsforce.github.io/) to authenticate.
 
@@ -36,3 +36,6 @@ async function submitBulkQueryJob() {
 
 submitBulkQueryJob();
 ```
+### Execute function in index.js example file
+
+A simple way to run node command is `cd` into the project directory where you have `index.js` and run `node index.js`

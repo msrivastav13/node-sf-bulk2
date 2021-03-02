@@ -38,3 +38,7 @@ async function submitBulkQueryJob() {
 submitBulkQueryJob();
 ```
 
+### Execute function in index.ts example file
+
+A simple way to run node command is `cd` into the project directory where you have `index.ts` and run `npx ts-node index.ts`
+
