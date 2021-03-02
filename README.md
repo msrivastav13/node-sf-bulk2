@@ -6,11 +6,12 @@ You can use this library in combination with Salesforce CLI or any other library
 
 ## TypeScript compatible
 
-The library is built using TypeScript 4.0 and provides typescript definitions to make it easier to use in Node.js projects using TypeScript
+The library is built using [TypeScript 4.0](https://www.typescriptlang.org/) and provides typescript definitions to make it easier to use in Node.js projects using TypeScript
 
 # Usage
 
-see the API Documentation
+check the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/modules.html)
 
 ### Example usage
 
+check [examples folder](/examples) for Typescript and JavaScript sample code on how to use this library
