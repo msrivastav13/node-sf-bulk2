@@ -1,4 +1,4 @@
-# Examples of using the *node-sf-bulk2* libraries using TypeScript
+# Examples of using the `node-sf-bulk2` libraries using TypeScript
 
 The example uses [jsforce](https://jsforce.github.io/) to authenticate.
 
@@ -39,6 +39,26 @@ submitBulkQueryJob();
 ```
 
 ### Execute function in index.ts example file
+
+In order to play with examples you will need to set username and password environment variables (password+securitytoken)
+
+**For MACOSX use below**
+
+`export username=<username>`
+
+`export password=<password+securitytoken>`
+
+**For Windows command line use below**
+
+`set username=<username>`
+
+`set password=<password+securitytoken>`
+
+**For  Windows PowerShell set environment variables as shown below**
+
+`$env:username="<username>"`
+
+`$env:password="<password+securitytoken>"`
 
 A simple way to run node command is `cd` into the project directory where you have `index.ts` and run `npx ts-node index.ts`
 
