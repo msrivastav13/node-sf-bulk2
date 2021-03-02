@@ -18,7 +18,7 @@ async function submitBulkQueryJob() {
                 'operation': 'query'
             };
             const response = await bulkapi2.submitBulkQueryJob(queryInput);
-            console.log(response);
+            return response;
         } catch (ex) {
             console.log(ex.response.data[0].errorCode);
             console.log(ex.response.data[0].message);
