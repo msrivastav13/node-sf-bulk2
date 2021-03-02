@@ -38,4 +38,25 @@ submitBulkQueryJob();
 ```
 ### Execute function in index.js example file
 
+In order to play with examples you will need to set username and password environment variables (password+securitytoken)
+
+**For MACOSX use below**
+
+`export username=<username>`
+
+`export password=<password+securitytoken>`
+
+**For Windows command line use below**
+
+`set username=<username>`
+
+`set password=<password+securitytoken>`
+
+**For  Windows PowerShell set environment variables as shown below**
+
+`$env:username="<username>"`
+
+`$env:password="<password+securitytoken>"`
+
+
 A simple way to run node command is `cd` into the project directory where you have `index.js` and run `node index.js`
