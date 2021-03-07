@@ -5,6 +5,10 @@ import { QueryInput } from './model/queryInput';
 import { BulkJobInfoResponse } from "./model/bulkJobInfoResponse";
 import { AllBulkQueryJobsInfoResponse } from "./model/allBulkQueryJobsInfoResponse";
 import { BulkQueryConfig } from './model/bulkQueryConfig';
+import { JobUploadRequest } from './model/jobUploadRequest';
+import { JobUploadResponse } from './model/jobUploadResponse';
+import { JobInfoResponse } from './model/jobInfoResponse';
+import { RESULTTYPE } from './model/enum'
 
 export default class BulkAPI2 {
 
@@ -63,7 +67,7 @@ export default class BulkAPI2 {
                 i++;
             }
         }
-        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json','application/json');
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const queryResponse = axiosresponse.data as AllBulkQueryJobsInfoResponse;
         return queryResponse;
@@ -96,5 +100,46 @@ export default class BulkAPI2 {
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const queryResponse = axiosresponse.data;
         return queryResponse;
+    }
+
+    public async createDataUploadJob(jobUploadRequest: JobUploadRequest): Promise<JobUploadResponse> {
+        const endpoint = this.endpoint + '/ingest';
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json; charset=UTF-8', 'application/json');
+        const axiosresponse: AxiosResponse = await axois.post(endpoint, JSON.stringify(jobUploadRequest), requestConfig);
+        const jobuploadresponse: JobUploadResponse = axiosresponse.data;
+        return jobuploadresponse;
+    }
+
+    public async uploadJobData(contenturl: string, data: string): Promise<number> {
+        const endpoint = this.connection.instanceUrl + contenturl;
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('text/csv', 'application/json');
+        const axiosresponse: AxiosResponse = await axois.put(endpoint, data, requestConfig);
+        return axiosresponse.status;
+    }
+
+    public async closeOrAbortJob(jobId: string, state: string): Promise<JobUploadResponse> {
+        const endpoint = this.endpoint + '/ingest/' + jobId;
+        const body = JSON.stringify({
+            state: state
+        });
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
+        const axiosresponse: AxiosResponse = await axois.patch(endpoint, body, requestConfig);
+        const jobuploadresponse: JobUploadResponse = axiosresponse.data;
+        return jobuploadresponse;
+    }
+
+    public async getInjestJobInfo(jobId: string): Promise<JobInfoResponse> {
+        const endpoint = this.endpoint + '/ingest/' + jobId;
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
+        const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
+        const queryResponse = axiosresponse.data as JobInfoResponse;
+        return queryResponse;
+    }
+
+    public async getResults(jobId: string, resulttype: RESULTTYPE): Promise<string> {
+        const endpoint = this.endpoint + '/ingest/' + jobId + '/' + resulttype;
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
+        const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
+        return axiosresponse.data;
     }
 }
