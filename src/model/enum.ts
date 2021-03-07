@@ -1,17 +1,39 @@
 export enum CONTENTTYPE {
-    CSV
+    "CSV"
 }
 
 export enum COLUMNDELIMITER {
-    BACKQUOTE,
-    CARET,
-    COMMA,
-    PIPE,
-    SEMICOLON,
-    TAB
+    "BACKQUOTE",
+    "CARET",
+    "COMMA",
+    "PIPE",
+    "SEMICOLON",
+    "TAB"
 }
 
 export enum LINEENDING {
-    LF,
-    CRLF
+    "LF",
+    "CRLF"
+}
+
+export enum OPERATION {
+    "insert",
+    "delete",
+    "hardDelete",
+    "update",
+    "upsert"
+}
+
+export enum STATE {
+    "Open",
+    "UploadComplete",
+    "Aborted",
+    "JobComplete",
+    "Failed"
+}
+
+export enum RESULTTYPE {
+    "successfulResults",
+    "failedResults",
+    "unprocessedrecords"
 }
