@@ -20,7 +20,7 @@ See the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/modules
 
 See [examples folder](/examples) for Typescript and JavaScript sample code on how to use this library
 
-### TypeScript example using jsforce
+### TypeScript example using jsforce for Bulk Query
 
 The below code shows how to use the library to submit bulk query request
 
@@ -57,7 +57,7 @@ async function submitBulkQueryJob() {
 // submit bulk query request
 submitBulkQueryJob();
 ```
-### JavaScript example using jsforce
+### JavaScript example using jsforce for Bulk Query
 
 The below code shows how to use the library to submit bulk query request using node.js (uses commonjs modules)
 
@@ -91,4 +91,63 @@ async function submitBulkQueryJob() {
 }
 // submit bulk query request
 submitBulkQueryJob();
+```
+
+### TypeScript example for uploading data from local CSV file
+
+
+This assumes you have local file `account.csv` in project workspace
+
+```typescript
+import jsforce from 'jsforce';
+import { BulkAPI2 } from 'node-sf-bulk2';
+import { BulkAPI2Connection, JobUploadRequest, JobUploadResponse, OPERATION, STATE } from 'node-sf-bulk2';
+import * as fs from 'fs';
+import { promisify } from "util";
+
+class BulkInsert {
+    async createDataUploadJob(bulkapi2: BulkAPI2): Promise<JobUploadResponse | undefined> {
+        const jobRequest: JobUploadRequest = {
+            'object': 'Account',
+            'operation': OPERATION[0]
+        };
+        const response: JobUploadResponse = await bulkapi2.createDataUploadJob(jobRequest);
+        return response;
+    }
+}
+// anonymous function uploading data in CSV format to Salesforce using Bulk V2
+ 
+(async () => {
+    if (process.env.username && process.env.password) {
+        // establish jsforce connection
+        const conn = new jsforce.Connection({});
+        await conn.login(process.env.username, process.env.password);
+        // create a bulk connection object using jsforce connection
+        const bulkconnect: BulkAPI2Connection = {
+            'accessToken': conn.accessToken,
+            'apiVersion': '51.0',
+            'instanceUrl': conn.instanceUrl
+        };
+        try {
+            // create a new BulkAPI2 class
+            const bulkrequest = new BulkAPI2(bulkconnect);
+            // create a bulk insert job
+            const response: JobUploadResponse | undefined = await (new BulkInsert().createDataUploadJob(bulkrequest));
+            if (response) {
+                // read csv data from the local file system
+                const data = await promisify(fs.readFile)(process.cwd() + "/account.csv", "UTF-8");
+                const status: number = await bulkrequest.uploadJobData(response.contentUrl, data);
+                if (status === 201) {
+                    // close the job for processing
+                    await bulkrequest.closeOrAbortJob(response.id, STATE[1]);
+                }
+            }
+        } catch (ex) {
+            console.log(ex.response.data[0].errorCode);
+            console.log(ex.response.data[0].message);
+        }
+    } else {
+        throw 'set environment variable with your orgs username and password'
+    }
+})();
 ```
