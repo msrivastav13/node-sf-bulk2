@@ -111,7 +111,7 @@ export default class BulkAPI2 {
     }
 
     public async uploadJobData(contenturl: string, data: string): Promise<number> {
-        const endpoint = this.connection.instanceUrl + contenturl;
+        const endpoint = this.connection.instanceUrl + '/' + contenturl;
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('text/csv', 'application/json');
         const axiosresponse: AxiosResponse = await axois.put(endpoint, data, requestConfig);
         return axiosresponse.status;
