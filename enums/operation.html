@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CONTENTTYPE | node-sf-bulk2</title>
+	<title>OPERATION | node-sf-bulk2</title>
 	<meta name="description" content="Documentation for node-sf-bulk2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">node-sf-bulk2</a>
 				</li>
 				<li>
-					<a href="contenttype.html">CONTENTTYPE</a>
+					<a href="operation.html">OPERATION</a>
 				</li>
 			</ul>
-			<h1>Enumeration CONTENTTYPE</h1>
+			<h1>Enumeration OPERATION</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,11 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="operation.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="operation.html#harddelete" class="tsd-kind-icon">hard<wbr>Delete</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="operation.html#insert" class="tsd-kind-icon">insert</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="operation.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="operation.html#upsert" class="tsd-kind-icon">upsert</a></li>
 							</ul>
 						</section>
 					</div>
@@ -81,12 +85,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="csv" class="tsd-anchor"></a>
-					<h3>CSV</h3>
-					<div class="tsd-signature tsd-kind-icon">CSV<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<a name="delete" class="tsd-anchor"></a>
+					<h3>delete</h3>
+					<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L1">model/enum.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L20">model/enum.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="harddelete" class="tsd-anchor"></a>
+					<h3>hard<wbr>Delete</h3>
+					<div class="tsd-signature tsd-kind-icon">hard<wbr>Delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L21">model/enum.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="insert" class="tsd-anchor"></a>
+					<h3>insert</h3>
+					<div class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L19">model/enum.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="update" class="tsd-anchor"></a>
+					<h3>update</h3>
+					<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 3</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L22">model/enum.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="upsert" class="tsd-anchor"></a>
+					<h3>upsert</h3>
+					<div class="tsd-signature tsd-kind-icon">upsert<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 4</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L23">model/enum.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -105,24 +149,36 @@
 					<li class=" tsd-kind-enum">
 						<a href="columndelimiter.html" class="tsd-kind-icon">COLUMNDELIMITER</a>
 					</li>
+					<li class=" tsd-kind-enum">
+						<a href="contenttype.html" class="tsd-kind-icon">CONTENTTYPE</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="lineending.html" class="tsd-kind-icon">LINEENDING</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="contenttype.html" class="tsd-kind-icon">CONTENTTYPE</a>
+						<a href="operation.html" class="tsd-kind-icon">OPERATION</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a>
+								<a href="operation.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="operation.html#harddelete" class="tsd-kind-icon">hard<wbr>Delete</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="operation.html#insert" class="tsd-kind-icon">insert</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="operation.html#update" class="tsd-kind-icon">update</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="operation.html#upsert" class="tsd-kind-icon">upsert</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-enum">
-						<a href="lineending.html" class="tsd-kind-icon">LINEENDING</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="operation.html" class="tsd-kind-icon">OPERATION</a>
-					</li>
 					<li class=" tsd-kind-enum">
 						<a href="resulttype.html" class="tsd-kind-icon">RESULTTYPE</a>
 					</li>

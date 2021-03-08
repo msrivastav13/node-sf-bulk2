@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BulkQueryConfig | node-sf-bulk2</title>
+	<title>JobUploadRequest | node-sf-bulk2</title>
 	<meta name="description" content="Documentation for node-sf-bulk2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">node-sf-bulk2</a>
 				</li>
 				<li>
-					<a href="bulkqueryconfig.html">BulkQueryConfig</a>
+					<a href="jobuploadrequest.html">JobUploadRequest</a>
 				</li>
 			</ul>
-			<h1>Interface BulkQueryConfig</h1>
+			<h1>Interface JobUploadRequest</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BulkQueryConfig</span>
+						<span class="target">JobUploadRequest</span>
 					</li>
 				</ul>
 			</section>
@@ -80,10 +80,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bulkqueryconfig.html#concurrencymode" class="tsd-kind-icon">concurrency<wbr>Mode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bulkqueryconfig.html#ispkchunkingenabled" class="tsd-kind-icon">is<wbr>PkChunking<wbr>Enabled</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bulkqueryconfig.html#jobtype" class="tsd-kind-icon">job<wbr>Type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bulkqueryconfig.html#querylocator" class="tsd-kind-icon">query<wbr>Locator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#assignmentruleid" class="tsd-kind-icon">assignment<wbr>Rule<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#columndelimiter" class="tsd-kind-icon">column<wbr>Delimiter</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#externalidfieldname" class="tsd-kind-icon">external<wbr>IdField<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#lineending" class="tsd-kind-icon">line<wbr>Ending</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#object" class="tsd-kind-icon">object</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobuploadrequest.html#operation" class="tsd-kind-icon">operation</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,42 +95,72 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="concurrencymode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> concurrency<wbr>Mode</h3>
-					<div class="tsd-signature tsd-kind-icon">concurrency<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="assignmentruleid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> assignment<wbr>Rule<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">assignment<wbr>Rule<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/bulkQueryConfig.ts#L4">model/bulkQueryConfig.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L2">model/jobUploadRequest.ts:2</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ispkchunkingenabled" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>PkChunking<wbr>Enabled</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>PkChunking<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="columndelimiter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> column<wbr>Delimiter</h3>
+					<div class="tsd-signature tsd-kind-icon">column<wbr>Delimiter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/bulkQueryConfig.ts#L2">model/bulkQueryConfig.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L3">model/jobUploadRequest.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="jobtype" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> job<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">job<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="contenttype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> content<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">content<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/bulkQueryConfig.ts#L3">model/bulkQueryConfig.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L4">model/jobUploadRequest.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="querylocator" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> query<wbr>Locator</h3>
-					<div class="tsd-signature tsd-kind-icon">query<wbr>Locator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<a name="externalidfieldname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> external<wbr>IdField<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">external<wbr>IdField<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/bulkQueryConfig.ts#L5">model/bulkQueryConfig.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L5">model/jobUploadRequest.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="lineending" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> line<wbr>Ending</h3>
+					<div class="tsd-signature tsd-kind-icon">line<wbr>Ending<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L6">model/jobUploadRequest.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="object" class="tsd-anchor"></a>
+					<h3>object</h3>
+					<div class="tsd-signature tsd-kind-icon">object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L7">model/jobUploadRequest.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="operation" class="tsd-anchor"></a>
+					<h3>operation</h3>
+					<div class="tsd-signature tsd-kind-icon">operation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/jobUploadRequest.ts#L8">model/jobUploadRequest.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,36 +206,45 @@
 					<li class=" tsd-kind-interface">
 						<a href="bulkjobinforesponse.html" class="tsd-kind-icon">Bulk<wbr>Job<wbr>Info<wbr>Response</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="bulkqueryconfig.html" class="tsd-kind-icon">Bulk<wbr>Query<wbr>Config</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bulkqueryconfig.html#concurrencymode" class="tsd-kind-icon">concurrency<wbr>Mode</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bulkqueryconfig.html#ispkchunkingenabled" class="tsd-kind-icon">is<wbr>PkChunking<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bulkqueryconfig.html#jobtype" class="tsd-kind-icon">job<wbr>Type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="bulkqueryconfig.html#querylocator" class="tsd-kind-icon">query<wbr>Locator</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="bulkqueryresponse.html" class="tsd-kind-icon">Bulk<wbr>Query<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="jobinforesponse.html" class="tsd-kind-icon">Job<wbr>Info<wbr>Response</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="jobuploadrequest.html" class="tsd-kind-icon">Job<wbr>Upload<wbr>Request</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#assignmentruleid" class="tsd-kind-icon">assignment<wbr>Rule<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#columndelimiter" class="tsd-kind-icon">column<wbr>Delimiter</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#externalidfieldname" class="tsd-kind-icon">external<wbr>IdField<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#lineending" class="tsd-kind-icon">line<wbr>Ending</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#object" class="tsd-kind-icon">object</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jobuploadrequest.html#operation" class="tsd-kind-icon">operation</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="jobuploadresponse.html" class="tsd-kind-icon">Job<wbr>Upload<wbr>Response</a>
 					</li>

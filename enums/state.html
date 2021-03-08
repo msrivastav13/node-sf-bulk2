@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CONTENTTYPE | node-sf-bulk2</title>
+	<title>STATE | node-sf-bulk2</title>
 	<meta name="description" content="Documentation for node-sf-bulk2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">node-sf-bulk2</a>
 				</li>
 				<li>
-					<a href="contenttype.html">CONTENTTYPE</a>
+					<a href="state.html">STATE</a>
 				</li>
 			</ul>
-			<h1>Enumeration CONTENTTYPE</h1>
+			<h1>Enumeration STATE</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,11 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="state.html#aborted" class="tsd-kind-icon">Aborted</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="state.html#failed" class="tsd-kind-icon">Failed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="state.html#jobcomplete" class="tsd-kind-icon">Job<wbr>Complete</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="state.html#open" class="tsd-kind-icon">Open</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="state.html#uploadcomplete" class="tsd-kind-icon">Upload<wbr>Complete</a></li>
 							</ul>
 						</section>
 					</div>
@@ -81,12 +85,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="csv" class="tsd-anchor"></a>
-					<h3>CSV</h3>
-					<div class="tsd-signature tsd-kind-icon">CSV<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<a name="aborted" class="tsd-anchor"></a>
+					<h3>Aborted</h3>
+					<div class="tsd-signature tsd-kind-icon">Aborted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L1">model/enum.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L29">model/enum.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="failed" class="tsd-anchor"></a>
+					<h3>Failed</h3>
+					<div class="tsd-signature tsd-kind-icon">Failed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 4</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L31">model/enum.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="jobcomplete" class="tsd-anchor"></a>
+					<h3>Job<wbr>Complete</h3>
+					<div class="tsd-signature tsd-kind-icon">Job<wbr>Complete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 3</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L30">model/enum.ts:30</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="open" class="tsd-anchor"></a>
+					<h3>Open</h3>
+					<div class="tsd-signature tsd-kind-icon">Open<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L27">model/enum.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="uploadcomplete" class="tsd-anchor"></a>
+					<h3>Upload<wbr>Complete</h3>
+					<div class="tsd-signature tsd-kind-icon">Upload<wbr>Complete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L28">model/enum.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -105,18 +149,9 @@
 					<li class=" tsd-kind-enum">
 						<a href="columndelimiter.html" class="tsd-kind-icon">COLUMNDELIMITER</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum">
+					<li class=" tsd-kind-enum">
 						<a href="contenttype.html" class="tsd-kind-icon">CONTENTTYPE</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-enum">
 						<a href="lineending.html" class="tsd-kind-icon">LINEENDING</a>
 					</li>
@@ -126,9 +161,30 @@
 					<li class=" tsd-kind-enum">
 						<a href="resulttype.html" class="tsd-kind-icon">RESULTTYPE</a>
 					</li>
-					<li class=" tsd-kind-enum">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
 						<a href="state.html" class="tsd-kind-icon">STATE</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="state.html#aborted" class="tsd-kind-icon">Aborted</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="state.html#failed" class="tsd-kind-icon">Failed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="state.html#jobcomplete" class="tsd-kind-icon">Job<wbr>Complete</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="state.html#open" class="tsd-kind-icon">Open</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="state.html#uploadcomplete" class="tsd-kind-icon">Upload<wbr>Complete</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="../classes/bulkapi2.html" class="tsd-kind-icon">BulkAPI2</a>
 					</li>

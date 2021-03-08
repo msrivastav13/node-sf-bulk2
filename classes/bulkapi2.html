@@ -94,11 +94,16 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#abortbulkqueryjob" class="tsd-kind-icon">abortbulk<wbr>Query<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#closeorabortjob" class="tsd-kind-icon">close<wbr>OrAbort<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#createdatauploadjob" class="tsd-kind-icon">create<wbr>Data<wbr>Upload<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#getallbulkqueryjobinfo" class="tsd-kind-icon">get<wbr>All<wbr>Bulk<wbr>Query<wbr>Job<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#getbulkqueryjobinfo" class="tsd-kind-icon">get<wbr>Bulk<wbr>Query<wbr>Job<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#getbulkqueryresults" class="tsd-kind-icon">get<wbr>Bulkquery<wbr>Results</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#getinjestjobinfo" class="tsd-kind-icon">get<wbr>Injest<wbr>Job<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="bulkapi2.html#getrequestconfig" class="tsd-kind-icon">get<wbr>Request<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#getresults" class="tsd-kind-icon">get<wbr>Results</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#submitbulkqueryjob" class="tsd-kind-icon">submit<wbr>Bulk<wbr>Query<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bulkapi2.html#uploadjobdata" class="tsd-kind-icon">upload<wbr>Job<wbr>Data</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,7 +121,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L12">bulk2.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L16">bulk2.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,7 +143,7 @@
 					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/bulkapi2connection.html" class="tsd-signature-type" data-tsd-kind="Interface">BulkAPI2Connection</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L11">bulk2.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L15">bulk2.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">endpoint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L12">bulk2.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L16">bulk2.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L72">bulk2.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L76">bulk2.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -179,6 +184,55 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="closeorabortjob" class="tsd-anchor"></a>
+					<h3>close<wbr>OrAbort<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">close<wbr>OrAbort<wbr>Job<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobuploadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L120">bulk2.ts:120</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>state: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobuploadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createdatauploadjob" class="tsd-anchor"></a>
+					<h3>create<wbr>Data<wbr>Upload<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Data<wbr>Upload<wbr>Job<span class="tsd-signature-symbol">(</span>jobUploadRequest<span class="tsd-signature-symbol">: </span><a href="../interfaces/jobuploadrequest.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobuploadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L105">bulk2.ts:105</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobUploadRequest: <a href="../interfaces/jobuploadrequest.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadRequest</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobuploadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobUploadResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getallbulkqueryjobinfo" class="tsd-anchor"></a>
 					<h3>get<wbr>All<wbr>Bulk<wbr>Query<wbr>Job<wbr>Info</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -188,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L52">bulk2.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L56">bulk2.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -211,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L44">bulk2.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L48">bulk2.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -234,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L83">bulk2.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L87">bulk2.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -253,6 +307,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getinjestjobinfo" class="tsd-anchor"></a>
+					<h3>get<wbr>Injest<wbr>Job<wbr>Info</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Injest<wbr>Job<wbr>Info<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobinforesponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobInfoResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L131">bulk2.ts:131</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/jobinforesponse.html" class="tsd-signature-type" data-tsd-kind="Interface">JobInfoResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="getrequestconfig" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Request<wbr>Config</h3>
@@ -263,7 +340,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L23">bulk2.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L27">bulk2.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -280,6 +357,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getresults" class="tsd-anchor"></a>
+					<h3>get<wbr>Results</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Results<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, resulttype<span class="tsd-signature-symbol">: </span><a href="../enums/resulttype.html" class="tsd-signature-type" data-tsd-kind="Enumeration">RESULTTYPE</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L139">bulk2.ts:139</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>resulttype: <a href="../enums/resulttype.html" class="tsd-signature-type" data-tsd-kind="Enumeration">RESULTTYPE</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="submitbulkqueryjob" class="tsd-anchor"></a>
 					<h3>submit<wbr>Bulk<wbr>Query<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -289,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/8fd1da5/src/bulk2.ts#L35">bulk2.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L39">bulk2.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -299,6 +402,32 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/bulkqueryresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">BulkQueryResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="uploadjobdata" class="tsd-anchor"></a>
+					<h3>upload<wbr>Job<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">upload<wbr>Job<wbr>Data<span class="tsd-signature-symbol">(</span>contenturl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/bulk2.ts#L113">bulk2.ts:113</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>contenturl: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>data: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -323,6 +452,15 @@
 					<li class=" tsd-kind-enum">
 						<a href="../enums/lineending.html" class="tsd-kind-icon">LINEENDING</a>
 					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/operation.html" class="tsd-kind-icon">OPERATION</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/resulttype.html" class="tsd-kind-icon">RESULTTYPE</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/state.html" class="tsd-kind-icon">STATE</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -341,6 +479,12 @@
 								<a href="bulkapi2.html#abortbulkqueryjob" class="tsd-kind-icon">abortbulk<wbr>Query<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bulkapi2.html#closeorabortjob" class="tsd-kind-icon">close<wbr>OrAbort<wbr>Job</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bulkapi2.html#createdatauploadjob" class="tsd-kind-icon">create<wbr>Data<wbr>Upload<wbr>Job</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bulkapi2.html#getallbulkqueryjobinfo" class="tsd-kind-icon">get<wbr>All<wbr>Bulk<wbr>Query<wbr>Job<wbr>Info</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -349,11 +493,20 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bulkapi2.html#getbulkqueryresults" class="tsd-kind-icon">get<wbr>Bulkquery<wbr>Results</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bulkapi2.html#getinjestjobinfo" class="tsd-kind-icon">get<wbr>Injest<wbr>Job<wbr>Info</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="bulkapi2.html#getrequestconfig" class="tsd-kind-icon">get<wbr>Request<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bulkapi2.html#getresults" class="tsd-kind-icon">get<wbr>Results</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bulkapi2.html#submitbulkqueryjob" class="tsd-kind-icon">submit<wbr>Bulk<wbr>Query<wbr>Job</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bulkapi2.html#uploadjobdata" class="tsd-kind-icon">upload<wbr>Job<wbr>Data</a>
 							</li>
 						</ul>
 					</li>
@@ -373,6 +526,15 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/bulkqueryresponse.html" class="tsd-kind-icon">Bulk<wbr>Query<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/jobinforesponse.html" class="tsd-kind-icon">Job<wbr>Info<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/jobuploadrequest.html" class="tsd-kind-icon">Job<wbr>Upload<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/jobuploadresponse.html" class="tsd-kind-icon">Job<wbr>Upload<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/queryinput.html" class="tsd-kind-icon">Query<wbr>Input</a>

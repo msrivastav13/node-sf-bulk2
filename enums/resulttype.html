@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CONTENTTYPE | node-sf-bulk2</title>
+	<title>RESULTTYPE | node-sf-bulk2</title>
 	<meta name="description" content="Documentation for node-sf-bulk2">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">node-sf-bulk2</a>
 				</li>
 				<li>
-					<a href="contenttype.html">CONTENTTYPE</a>
+					<a href="resulttype.html">RESULTTYPE</a>
 				</li>
 			</ul>
-			<h1>Enumeration CONTENTTYPE</h1>
+			<h1>Enumeration RESULTTYPE</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="resulttype.html#failedresults" class="tsd-kind-icon">failed<wbr>Results</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="resulttype.html#successfulresults" class="tsd-kind-icon">successful<wbr>Results</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="resulttype.html#unprocessedrecords" class="tsd-kind-icon">unprocessedrecords</a></li>
 							</ul>
 						</section>
 					</div>
@@ -81,12 +83,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="csv" class="tsd-anchor"></a>
-					<h3>CSV</h3>
-					<div class="tsd-signature tsd-kind-icon">CSV<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<a name="failedresults" class="tsd-anchor"></a>
+					<h3>failed<wbr>Results</h3>
+					<div class="tsd-signature tsd-kind-icon">failed<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L1">model/enum.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L36">model/enum.ts:36</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="successfulresults" class="tsd-anchor"></a>
+					<h3>successful<wbr>Results</h3>
+					<div class="tsd-signature tsd-kind-icon">successful<wbr>Results<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L35">model/enum.ts:35</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="unprocessedrecords" class="tsd-anchor"></a>
+					<h3>unprocessedrecords</h3>
+					<div class="tsd-signature tsd-kind-icon">unprocessedrecords<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msrivastav13/node-sf-bulk2/blob/39972f5/src/model/enum.ts#L37">model/enum.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -105,27 +127,33 @@
 					<li class=" tsd-kind-enum">
 						<a href="columndelimiter.html" class="tsd-kind-icon">COLUMNDELIMITER</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum">
+					<li class=" tsd-kind-enum">
 						<a href="contenttype.html" class="tsd-kind-icon">CONTENTTYPE</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="contenttype.html#csv" class="tsd-kind-icon">CSV</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-enum">
 						<a href="lineending.html" class="tsd-kind-icon">LINEENDING</a>
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="operation.html" class="tsd-kind-icon">OPERATION</a>
 					</li>
-					<li class=" tsd-kind-enum">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
 						<a href="resulttype.html" class="tsd-kind-icon">RESULTTYPE</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="resulttype.html#failedresults" class="tsd-kind-icon">failed<wbr>Results</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="resulttype.html#successfulresults" class="tsd-kind-icon">successful<wbr>Results</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="resulttype.html#unprocessedrecords" class="tsd-kind-icon">unprocessedrecords</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum">
 						<a href="state.html" class="tsd-kind-icon">STATE</a>
 					</li>
