@@ -8,6 +8,10 @@ You can use this library in combination with Salesforce CLI or any other library
 
 The library is built using [TypeScript 4.0](https://www.typescriptlang.org/) and provides typescript definitions to make it easier to use in Node.js projects using TypeScript
 
+# Installation
+
+`npm install node-sf-bulk2`
+
 # Usage
 
 See the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/modules.html)
