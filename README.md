@@ -14,7 +14,7 @@ The library is built using [TypeScript 4.0](https://www.typescriptlang.org/) and
 
 # Usage
 
-See the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/modules.html)
+See the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/index.html)
 
 ## Example usage
 
