@@ -152,7 +152,7 @@ class BulkInsert {
 })();
 ```
 
-### JavScript example for uploading data from local CSV file
+### JavaScript example for uploading data from local CSV file
 
 
 This assumes you have local file `account.csv` in project workspace
