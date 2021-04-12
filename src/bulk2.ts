@@ -84,7 +84,7 @@ export default class BulkAPI2 {
         return queryResponse;
     }
 
-    public async getBulkqueryResults(jobId: string, locator?: string, maxRecords?: number): Promise<AxiosResponse> {
+    public async getBulkQueryResults(jobId: string, locator?: string, maxRecords?: number): Promise<AxiosResponse> {
         let endpoint = this.endpoint + '/query/' + jobId + '/results';
         if (locator) {
             endpoint += '?locator=' + locator;
