@@ -84,7 +84,7 @@ export default class BulkAPI2 {
         return queryResponse;
     }
 
-    public async getBulkqueryResults(jobId: string, locator?: number, maxRecords?: number): Promise<string> {
+    public async getBulkqueryResults(jobId: string, locator?: string, maxRecords?: number): Promise<AxiosResponse> {
         let endpoint = this.endpoint + '/query/' + jobId + '/results';
         if (locator) {
             endpoint += '?locator=' + locator;
@@ -98,8 +98,7 @@ export default class BulkAPI2 {
         }
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
-        const queryResponse = axiosresponse.data;
-        return queryResponse;
+        return axiosresponse;
     }
 
     public async createDataUploadJob(jobUploadRequest: JobUploadRequest): Promise<JobUploadResponse> {
@@ -128,7 +127,7 @@ export default class BulkAPI2 {
         return jobuploadresponse;
     }
 
-    public async getInjestJobInfo(jobId: string): Promise<JobInfoResponse> {
+    public async getIngestJobInfo(jobId: string): Promise<JobInfoResponse> {
         const endpoint = this.endpoint + '/ingest/' + jobId;
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
