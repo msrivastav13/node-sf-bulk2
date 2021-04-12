@@ -73,7 +73,7 @@ export default class BulkAPI2 {
         return queryResponse;
     }
 
-    public async abortbulkQueryJob(jobId: string): Promise<BulkQueryResponse> {
+    public async abortBulkQueryJob(jobId: string): Promise<BulkQueryResponse> {
         const endpoint = this.endpoint + '/query/' + jobId;
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'application/json');
         const body = JSON.stringify({
