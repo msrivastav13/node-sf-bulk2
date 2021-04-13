@@ -33,6 +33,8 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = {
             headers
         }
+        requestConfig.maxBodyLength = Infinity;
+        requestConfig.maxContentLength = Infinity;
         return requestConfig;
     }
 
