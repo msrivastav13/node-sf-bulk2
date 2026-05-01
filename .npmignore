@@ -1,5 +1,10 @@
-nodemon.json
 src/
-.vscode
 examples/
 docs/
+.vscode/
+.claude/
+nodemon.json
+vitest.config.ts
+eslint.config.mjs
+tsconfig.json
+CLAUDE.md

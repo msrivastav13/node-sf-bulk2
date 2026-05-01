@@ -21,7 +21,9 @@ export enum OPERATION {
     "delete",
     "hardDelete",
     "update",
-    "upsert"
+    "upsert",
+    "query",
+    "queryAll"
 }
 
 export enum STATE {
@@ -29,11 +31,19 @@ export enum STATE {
     "UploadComplete",
     "Aborted",
     "JobComplete",
-    "Failed"
+    "Failed",
+    "InProgress"
 }
 
 export enum RESULTTYPE {
     "successfulResults",
     "failedResults",
     "unprocessedrecords"
+}
+
+export enum JOBTYPE {
+    "BigObjectIngest",
+    "Classic",
+    "V2Ingest",
+    "V2Query"
 }

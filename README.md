@@ -1,202 +1,219 @@
-# Node-SF-BULK2
+# node-sf-bulk2
 
-This is a node library to work with the [Salesforce Bulk API 2.0](https://developer.salesforce.com/docs/atlas.en-us.230.0.api_asynch.meta/api_bulk_v2/asynch_api_intro.htm).
+Node.js wrapper for the [Salesforce Bulk API 2.0](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_bulk_v2/asynch_api_intro.htm). Works with any auth library that gives you an access token — [jsforce](https://jsforce.github.io/), [@salesforce/sf-core](https://github.com/forcedotcom/sfdx-core), SF CLI, etc.
 
-You can use this library in combination with Salesforce CLI or any other library (like [jsforce](https://jsforce.github.io/document/) or [@salesforce/sf-core](https://github.com/forcedotcom/sfdx-core)) that handles authentication.
+Written in TypeScript with full type definitions included.
 
-## TypeScript compatible
+## Installation
 
-The library is built using [TypeScript 4.0](https://www.typescriptlang.org/) and provides typescript definitions to make it easier to use in Node.js projects using TypeScript
+```sh
+npm install node-sf-bulk2
+```
 
-# Installation
+## Quick Start
 
-`npm install node-sf-bulk2`
-
-# Usage
-
-See the [API Documentation](https://msrivastav13.github.io/node-sf-bulk2/index.html)
-
-## Example usage
-
-See [examples folder](/examples) for Typescript and JavaScript sample code on how to use this library
-
-### TypeScript example using jsforce for Bulk Query
-
-The below code shows how to use the library to submit bulk query request
+Create a connection object from any Salesforce auth source, then pass it to `BulkAPI2`:
 
 ```typescript
-import jsforce from 'jsforce';
-import { BulkAPI2 } from 'node-sf-bulk2';
-import { BulkAPI2Connection, QueryInput } from 'node-sf-bulk2';
+import { BulkAPI2, BulkAPI2Connection } from 'node-sf-bulk2';
 
-async function submitBulkQueryJob() {
-    if (process.env.username && process.env.password) {
-        const conn = new jsforce.Connection({});
-        await conn.login(process.env.username, process.env.password);
-        const bulkconnect: BulkAPI2Connection = {
-            'accessToken': conn.accessToken,
-            'apiVersion': '51.0',
-            'instanceUrl': conn.instanceUrl
-        };
-        try {
-            const bulkapi2 = new BulkAPI2(bulkconnect);
-            const queryInput: QueryInput = {
-                'query': 'Select Id from Account',
-                'operation': 'query'
-            };
-            const response = await bulkapi2.submitBulkQueryJob(queryInput);
-            return response;
-        } catch (ex) {
-            console.log(ex.response.data[0].errorCode);
-            console.log(ex.response.data[0].message);
-        }
-    } else {
-        throw 'set environment variable with your orgs username and password'
-    }
-}
-// submit bulk query request
-submitBulkQueryJob();
-```
-### JavaScript example using jsforce for Bulk Query
+const connection: BulkAPI2Connection = {
+  accessToken: '<your-access-token>',
+  instanceUrl: 'https://yourorg.my.salesforce.com',
+  apiVersion: '62.0',
+};
 
-The below code shows how to use the library to submit bulk query request using node.js (uses commonjs modules)
-
-```javascript
-const jsforce = require('jsforce');
-const sfbulk = require('node-sf-bulk2');
-
-async function submitBulkQueryJob() {
-    if (process.env.username && process.env.password) {
-        const conn = new jsforce.Connection({});
-        await conn.login(process.env.username, process.env.password);
-        const bulkconnect = {
-            'accessToken': conn.accessToken,
-            'apiVersion': '51.0',
-            'instanceUrl': conn.instanceUrl
-        };
-        try {
-            const bulkapi2 = new sfbulk.BulkAPI2(bulkconnect);
-            const queryInput = {
-                'query': 'Select Id from Account',
-                'operation': 'query'
-            };
-            const response = await bulkapi2.submitBulkQueryJob(queryInput);
-            console.log(response);
-        } catch (ex) {
-            console.log(ex);
-        }
-    } else {
-        throw 'set environment variable with your orgs username and password'
-    }
-}
-// submit bulk query request
-submitBulkQueryJob();
+const bulk = new BulkAPI2(connection);
 ```
 
-### TypeScript example for uploading data from local CSV file
-
-
-This assumes you have local file `account.csv` in project workspace
+For the Tooling API, set `isTooling: true` on the connection. To pass [call options](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/headers_calloptions.htm), add `callOptions`:
 
 ```typescript
-import jsforce from 'jsforce';
-import { BulkAPI2 } from 'node-sf-bulk2';
-import { BulkAPI2Connection, JobUploadRequest, JobUploadResponse, OPERATION, STATE } from 'node-sf-bulk2';
-import * as fs from 'fs';
-import { promisify } from "util";
+const connection: BulkAPI2Connection = {
+  accessToken: '<token>',
+  instanceUrl: 'https://yourorg.my.salesforce.com',
+  apiVersion: '62.0',
+  isTooling: true,
+  callOptions: {
+    client: 'myApp',
+    defaultNamespace: 'ns1',
+  },
+};
+```
 
-class BulkInsert {
-    async createDataUploadJob(bulkapi2: BulkAPI2): Promise<JobUploadResponse | undefined> {
-        const jobRequest: JobUploadRequest = {
-            'object': 'Account',
-            'operation': OPERATION[0]
-        };
-        const response: JobUploadResponse = await bulkapi2.createDataUploadJob(jobRequest);
-        return response;
-    }
+## Query Job — Full Lifecycle
+
+Submit a query, poll until complete, and retrieve CSV results:
+
+```typescript
+import { BulkAPI2, BulkAPI2Connection, QueryInput } from 'node-sf-bulk2';
+
+const connection: BulkAPI2Connection = {
+  accessToken: '<token>',
+  instanceUrl: 'https://yourorg.my.salesforce.com',
+  apiVersion: '62.0',
+};
+const bulk = new BulkAPI2(connection);
+
+// 1. Submit the query job
+const queryInput: QueryInput = {
+  query: 'SELECT Id, Name FROM Account',
+  operation: 'query',
+};
+const job = await bulk.submitBulkQueryJob(queryInput);
+console.log('Job created:', job.id);
+
+// 2. Poll until complete
+let info = await bulk.getBulkQueryJobInfo(job.id);
+while (info.state !== 'JobComplete' && info.state !== 'Failed') {
+  await new Promise((r) => setTimeout(r, 2000));
+  info = await bulk.getBulkQueryJobInfo(job.id);
 }
-// anonymous function uploading data in CSV format to Salesforce using Bulk V2
- 
-(async () => {
-    if (process.env.username && process.env.password) {
-        // establish jsforce connection
-        const conn = new jsforce.Connection({});
-        await conn.login(process.env.username, process.env.password);
-        // create a bulk connection object using jsforce connection
-        const bulkconnect: BulkAPI2Connection = {
-            'accessToken': conn.accessToken,
-            'apiVersion': '51.0',
-            'instanceUrl': conn.instanceUrl
-        };
-        try {
-            // create a new BulkAPI2 class
-            const bulkrequest = new BulkAPI2(bulkconnect);
-            // create a bulk insert job
-            const response: JobUploadResponse | undefined = await (new BulkInsert().createDataUploadJob(bulkrequest));
-            if (response) {
-                // read csv data from the local file system
-                const data = await promisify(fs.readFile)(process.cwd() + "/account.csv", "UTF-8");
-                const status: number = await bulkrequest.uploadJobData(response.contentUrl, data);
-                if (status === 201) {
-                    // close the job for processing
-                    await bulkrequest.closeOrAbortJob(response.id, STATE[1]);
-                }
-            }
-        } catch (ex) {
-            console.log(ex.response.data[0].errorCode);
-            console.log(ex.response.data[0].message);
-        }
-    } else {
-        throw 'set environment variable with your orgs username and password'
-    }
-})();
+
+if (info.state === 'Failed') {
+  throw new Error('Query job failed');
+}
+
+// 3. Get results (CSV)
+const response = await bulk.getBulkQueryResults(job.id);
+console.log('Results:\n', response.data);
+
+// 4. Clean up
+await bulk.deleteBulkQueryJob(job.id);
 ```
 
-### JavaScript example for uploading data from local CSV file
+For large result sets, page through with `locator` and `maxRecords`:
 
-
-This assumes you have local file `account.csv` in project workspace
-
-```javascript
-
-const jsforce = require('jsforce');
-const sfbulk = require('node-sf-bulk2');
-const util = require('util');
-const fs = require('fs');
-
-(async () => {
-    if (process.env.username && process.env.password) {
-        const conn = new jsforce.Connection({});
-        await conn.login(process.env.username, process.env.password);
-        const bulkconnect = {
-            'accessToken': conn.accessToken,
-            'apiVersion': '51.0',
-            'instanceUrl': conn.instanceUrl
-        };
-        try {
-            // create a new BulkAPI2 class
-            const bulkrequest = new sfbulk.BulkAPI2(bulkconnect);
-            // create a bulk insert job
-            const jobRequest = {
-                'object': 'Account',
-                'operation': 'insert'
-            };
-            const response = await bulkrequest.createDataUploadJob(jobRequest);
-            if (response.id) {
-                // read csv data from the local file system
-                const data = await util.promisify(fs.readFile)(process.cwd() + "/account.csv", "UTF-8");
-                const status = await bulkrequest.uploadJobData(response.contentUrl, data);
-                if (status === 201) {
-                    // close the job for processing
-                    await bulkrequest.closeOrAbortJob(response.id, 'UploadComplete');
-                }
-            }
-        } catch (ex) {
-            console.log(ex);
-        }
-    } else {
-        throw 'set environment variable with your orgs username and password'
-    }
-})();
-
+```typescript
+let locator: string | undefined;
+do {
+  const response = await bulk.getBulkQueryResults(job.id, locator, 10000);
+  console.log(response.data);
+  locator = response.headers['sforce-locator'];
+  if (locator === 'null') locator = undefined;
+} while (locator);
 ```
+
+## Ingest Job — Full Lifecycle
+
+Create an ingest job, upload CSV data, and retrieve results:
+
+```typescript
+import { BulkAPI2, BulkAPI2Connection, JobUploadRequest } from 'node-sf-bulk2';
+import { readFileSync } from 'fs';
+
+const connection: BulkAPI2Connection = {
+  accessToken: '<token>',
+  instanceUrl: 'https://yourorg.my.salesforce.com',
+  apiVersion: '62.0',
+};
+const bulk = new BulkAPI2(connection);
+
+// 1. Create the job
+const jobRequest: JobUploadRequest = {
+  object: 'Account',
+  operation: 'insert',
+};
+const job = await bulk.createDataUploadJob(jobRequest);
+
+// 2. Upload CSV data
+const csv = readFileSync('./accounts.csv', 'utf-8');
+await bulk.uploadJobData(job.contentUrl, csv);
+
+// 3. Close the job to begin processing
+await bulk.closeOrAbortJob(job.id, 'UploadComplete');
+
+// 4. Poll until complete
+let info = await bulk.getIngestJobInfo(job.id);
+while (info.state !== 'JobComplete' && info.state !== 'Failed') {
+  await new Promise((r) => setTimeout(r, 2000));
+  info = await bulk.getIngestJobInfo(job.id);
+}
+
+// 5. Get results
+const successful = await bulk.getResults(job.id, 0); // successfulResults
+const failed = await bulk.getResults(job.id, 1);     // failedResults
+console.log('Successful:\n', successful);
+console.log('Failed:\n', failed);
+
+// 6. Clean up
+await bulk.deleteIngestJob(job.id);
+```
+
+You can also create a job and upload data in a single multipart request:
+
+```typescript
+const csv = readFileSync('./accounts.csv', 'utf-8');
+const job = await bulk.createDataUploadJobWithData(
+  { object: 'Account', operation: 'insert' },
+  csv,
+);
+```
+
+## API Reference
+
+### Query Jobs
+
+| Method | Description |
+|--------|-------------|
+| `submitBulkQueryJob(query)` | Submit a new query job |
+| `getBulkQueryJobInfo(jobId)` | Get status/info for a query job |
+| `getAllBulkQueryJobInfo(config?)` | List all query jobs (with optional filters) |
+| `getBulkQueryResults(jobId, locator?, maxRecords?)` | Get query results as CSV |
+| `getBulkQueryResultPages(jobId)` | Get result page URLs for parallel download |
+| `abortBulkQueryJob(jobId)` | Abort a query job |
+| `deleteBulkQueryJob(jobId)` | Delete a query job |
+
+### Ingest Jobs
+
+| Method | Description |
+|--------|-------------|
+| `createDataUploadJob(request)` | Create an ingest job |
+| `createDataUploadJobWithData(request, csv)` | Create an ingest job with CSV data in one request |
+| `uploadJobData(contentUrl, csv)` | Upload CSV data to an open job |
+| `closeOrAbortJob(jobId, state)` | Close (`UploadComplete`) or abort (`Aborted`) a job |
+| `getIngestJobInfo(jobId)` | Get status/info for an ingest job |
+| `getAllIngestJobInfo(config?)` | List all ingest jobs (with optional filters) |
+| `getResults(jobId, resultType)` | Get results — `0` = successful, `1` = failed, `2` = unprocessed |
+| `deleteIngestJob(jobId)` | Delete an ingest job |
+
+See the [full API documentation](https://msrivastav13.github.io/node-sf-bulk2/index.html) for details on all request/response types.
+
+## Examples
+
+The [`examples/`](./examples) directory contains runnable scripts:
+
+- **[query-job.ts](./examples/query-job.ts)** — Submit a query, poll, retrieve CSV results
+- **[ingest-job.ts](./examples/ingest-job.ts)** — Create ingest job, upload CSV, poll, retrieve results
+
+To run them, set your Salesforce credentials as environment variables:
+
+```sh
+export SF_ACCESS_TOKEN="your-access-token"
+export SF_INSTANCE_URL="https://yourorg.my.salesforce.com"
+```
+
+Then run with `ts-node`:
+
+```sh
+npx ts-node examples/query-job.ts
+npx ts-node examples/ingest-job.ts
+```
+
+## Testing
+
+```sh
+npm test             # run all tests
+npm run test:unit    # unit tests only (mocked, no org needed)
+npm run test:watch   # watch mode
+```
+
+Integration tests require a Salesforce org:
+
+```sh
+SF_ACCESS_TOKEN="..." SF_INSTANCE_URL="..." npm run test:integration
+```
+
+## License
+
+ISC
