@@ -2,13 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2026-04-30
+
+### Added
+
+- **`getBulkQueryResultsStream(jobId, locator?, maxRecords?)`** — stream query results as a Node.js `Readable` instead of buffering in memory. Useful for large result sets.
+
 ## [0.1.0] - 2026-04-30
 
 ### Added
 
 - **Sforce-Call-Options header support** — `Connection` now accepts `callOptions` with `client` and `defaultNamespace` fields, sent as the `Sforce-Call-Options` header on every request.
 - **`deleteIngestJob(jobId)`** — delete a completed ingest job.
-- **`getBulkQueryResultsStream(jobId, locator?, maxRecords?)`** — stream query results as a Node.js `Readable` instead of buffering in memory. Useful for large result sets.
 - **`deleteBulkQueryJob(jobId)`** — delete a completed query job.
 - **`getAllIngestJobInfo(config?)`** — list all ingest jobs with optional filters (`jobType`, `isPkChunkingEnabled`, `queryLocator`).
 - **`getBulkQueryResultPages(jobId)`** — retrieve result page URLs for parallel query result downloads.
@@ -24,10 +29,15 @@ All notable changes to this project will be documented in this file.
 - Rewritten README with full query and ingest lifecycle examples, API reference table, and testing docs.
 - Simplified examples directory — two runnable TypeScript scripts (`query-job.ts`, `ingest-job.ts`) replacing the four nested mini-projects.
 
+### Fixed
+
+- **`getResults()` URL construction** — was appending the numeric enum value (`0`, `1`, `2`) instead of the string name (`successfulResults`, `failedResults`, `unprocessedrecords`).
+
 ### Changed
 
 - Updated `axios` to `^1.15.0`.
 - Updated `typescript` to `~5.8.0`.
+- Added `@types/node` as a direct devDependency.
 - Migrated ESLint from `.eslintrc.json` to flat config (`eslint.config.mjs`).
 - Test files excluded from the TypeScript build output.
 
