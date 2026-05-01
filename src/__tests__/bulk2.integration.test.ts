@@ -80,9 +80,24 @@ describe.skipIf(!canRun)('BulkAPI2 integration', () => {
       expect(typeof results.data).toBe('string');
     });
 
+    it('streams query results', async () => {
+      const info = await api.getBulkQueryJobInfo(queryJobId);
+      if (info.state !== 'JobComplete') {
+        console.warn(`Query job ${queryJobId} not complete, skipping stream test`);
+        return;
+      }
+      const stream = await api.getBulkQueryResultsStream(queryJobId);
+      const chunks: Buffer[] = [];
+      for await (const chunk of stream) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      }
+      const csv = Buffer.concat(chunks).toString('utf-8');
+      expect(csv.length).toBeGreaterThan(0);
+      expect(csv).toContain('Id');
+    });
+
     it('deletes the query job', async () => {
       await api.deleteBulkQueryJob(queryJobId);
-      // If no error thrown, delete succeeded
     });
   });
 

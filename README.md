@@ -94,6 +94,16 @@ do {
 } while (locator);
 ```
 
+For large results that shouldn't be buffered in memory, stream directly to a file:
+
+```typescript
+import { createWriteStream } from 'fs';
+import { pipeline } from 'stream/promises';
+
+const stream = await bulk.getBulkQueryResultsStream(job.id);
+await pipeline(stream, createWriteStream('results.csv'));
+```
+
 ## Ingest Job — Full Lifecycle
 
 Create an ingest job, upload CSV data, and retrieve results:
@@ -160,6 +170,7 @@ const job = await bulk.createDataUploadJobWithData(
 | `getBulkQueryJobInfo(jobId)` | Get status/info for a query job |
 | `getAllBulkQueryJobInfo(config?)` | List all query jobs (with optional filters) |
 | `getBulkQueryResults(jobId, locator?, maxRecords?)` | Get query results as CSV |
+| `getBulkQueryResultsStream(jobId, locator?, maxRecords?)` | Stream query results as a Node.js Readable |
 | `getBulkQueryResultPages(jobId)` | Get result page URLs for parallel download |
 | `abortBulkQueryJob(jobId)` | Abort a query job |
 | `deleteBulkQueryJob(jobId)` | Delete a query job |

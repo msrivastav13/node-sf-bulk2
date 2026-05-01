@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - **Sforce-Call-Options header support** — `Connection` now accepts `callOptions` with `client` and `defaultNamespace` fields, sent as the `Sforce-Call-Options` header on every request.
 - **`deleteIngestJob(jobId)`** — delete a completed ingest job.
+- **`getBulkQueryResultsStream(jobId, locator?, maxRecords?)`** — stream query results as a Node.js `Readable` instead of buffering in memory. Useful for large result sets.
 - **`deleteBulkQueryJob(jobId)`** — delete a completed query job.
 - **`getAllIngestJobInfo(config?)`** — list all ingest jobs with optional filters (`jobType`, `isPkChunkingEnabled`, `queryLocator`).
 - **`getBulkQueryResultPages(jobId)`** — retrieve result page URLs for parallel query result downloads.

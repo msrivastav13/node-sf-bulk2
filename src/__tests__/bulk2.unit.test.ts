@@ -1,3 +1,4 @@
+import { Readable } from 'stream';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import axios from 'axios';
 import BulkAPI2 from '../bulk2';
@@ -254,6 +255,44 @@ describe('BulkAPI2', () => {
 
       expect(result.data).toBe('Id,Name\n001,Acme');
       expect(result.status).toBe(200);
+    });
+  });
+
+  describe('getBulkQueryResultsStream', () => {
+    it('GETs /query/{jobId}/results with responseType stream', async () => {
+      const fakeStream = new Readable({ read() { this.push(null); } });
+      mockedAxios.get.mockResolvedValueOnce(mockResponse(fakeStream));
+
+      const result = await api.getBulkQueryResultsStream('q1');
+
+      expect(result).toBe(fakeStream);
+      const config = mockedAxios.get.mock.calls[0][1]!;
+      expect(config.responseType).toBe('stream');
+      expect(config.headers?.accept).toBe('text/csv');
+    });
+
+    it('appends locator and maxRecords params', async () => {
+      const fakeStream = new Readable({ read() { this.push(null); } });
+      mockedAxios.get.mockResolvedValueOnce(mockResponse(fakeStream));
+
+      await api.getBulkQueryResultsStream('q1', 'abc', 500);
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${BASE_ENDPOINT}/query/q1/results?locator=abc&maxRecords=500`,
+        expect.any(Object),
+      );
+    });
+
+    it('appends only maxRecords when no locator', async () => {
+      const fakeStream = new Readable({ read() { this.push(null); } });
+      mockedAxios.get.mockResolvedValueOnce(mockResponse(fakeStream));
+
+      await api.getBulkQueryResultsStream('q1', undefined, 100);
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${BASE_ENDPOINT}/query/q1/results?maxRecords=100`,
+        expect.any(Object),
+      );
     });
   });
 

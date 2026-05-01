@@ -1,3 +1,4 @@
+import { Readable } from 'stream';
 import { Connection } from "./model/connection";
 import axois, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { BulkQueryResponse } from './model/queryResponse';
@@ -116,6 +117,24 @@ export default class BulkAPI2 {
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         return axiosresponse;
+    }
+
+    public async getBulkQueryResultsStream(jobId: string, locator?: string, maxRecords?: number): Promise<Readable> {
+        let endpoint = this.endpoint + '/query/' + jobId + '/results';
+        if (locator) {
+            endpoint += '?locator=' + locator;
+            if (maxRecords) {
+                endpoint += '&maxRecords=' + maxRecords;
+            }
+        } else {
+            if (maxRecords) {
+                endpoint += '?maxRecords=' + maxRecords;
+            }
+        }
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
+        requestConfig.responseType = 'stream';
+        const axiosresponse: AxiosResponse<Readable> = await axois.get(endpoint, requestConfig);
+        return axiosresponse.data;
     }
 
     public async createDataUploadJob(jobUploadRequest: JobUploadRequest): Promise<JobUploadResponse> {
