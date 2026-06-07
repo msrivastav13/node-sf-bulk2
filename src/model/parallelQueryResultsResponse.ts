@@ -1,9 +1,9 @@
-export interface ResultPage {
-    resultUrl: string;
+export interface ResultChunk {
+    resultLink: string;
 }
 
 export interface ParallelQueryResultsResponse {
-    resultPages: ResultPage[];
-    nextRecordsUrl: string;
+    resultChunks: ResultChunk[];
+    nextRecordsUrl: string | null;
     done: boolean;
 }

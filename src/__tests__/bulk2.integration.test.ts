@@ -96,6 +96,43 @@ describe.skipIf(!canRun)('BulkAPI2 integration', () => {
       expect(csv).toContain('Id');
     });
 
+    it('downloads result pages (partial/parallel downloads)', async () => {
+      const info = await api.getBulkQueryJobInfo(queryJobId);
+      if (info.state !== 'JobComplete') {
+        console.warn(`Query job ${queryJobId} not complete, skipping result pages test`);
+        return;
+      }
+
+      // resultPages requires the PartialDownloadAndJobEvent org preference; skip if unavailable.
+      let pages;
+      try {
+        pages = await api.getBulkQueryResultPages(queryJobId);
+      } catch {
+        console.warn('resultPages unavailable (PartialDownloadAndJobEvent disabled), skipping');
+        return;
+      }
+      expect(Array.isArray(pages.resultChunks)).toBe(true);
+      if (pages.resultChunks.length === 0) {
+        console.warn('No result chunks returned, skipping page download checks');
+        return;
+      }
+
+      const { resultLink } = pages.resultChunks[0];
+
+      // Buffered download
+      const page = await api.getResultPage(resultLink);
+      expect(page.status).toBe(200);
+      expect(typeof page.data).toBe('string');
+
+      // Streamed download
+      const stream = await api.getResultPageStream(resultLink);
+      const chunks: Buffer[] = [];
+      for await (const chunk of stream) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      }
+      expect(Buffer.concat(chunks).toString('utf-8').length).toBeGreaterThan(0);
+    });
+
     it('deletes the query job', async () => {
       await api.deleteBulkQueryJob(queryJobId);
     });
