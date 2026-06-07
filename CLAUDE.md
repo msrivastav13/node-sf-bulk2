@@ -11,7 +11,14 @@ A Node.js/TypeScript library wrapping the Salesforce Bulk API 2.0. Published to 
 - **Build:** `npm run build` (runs `rimraf ./dist && tsc`, outputs CommonJS to `dist/`)
 - **Lint:** `npm run eslint` (ESLint with `@typescript-eslint`)
 - **Dev watch:** `npm run start:dev` (nodemon with ts-node)
-- **No test suite exists.** `npm test` exits with an error by design.
+- **Test:** `npm test` (runs all vitest suites once). Also `npm run test:unit`, `npm run test:integration`, and `npm run test:watch`.
+
+## Tests
+
+Tests use vitest and live in `src/__tests__/`:
+
+- **`bulk2.unit.test.ts`** — unit tests covering the `BulkAPI2` class. These run with no external dependencies and gate publishing via `prepublishOnly` (`npm run build && npm run test:unit`).
+- **`bulk2.integration.test.ts`** — integration tests against a live Salesforce org. Currently skipped (they require real connection credentials).
 
 ## Architecture
 
