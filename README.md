@@ -104,6 +104,32 @@ const stream = await bulk.getBulkQueryResultsStream(job.id);
 await pipeline(stream, createWriteStream('results.csv'));
 ```
 
+### Partial / Parallel Downloads
+
+When the `PartialDownloadAndJobEvent` org preference is enabled, a query job's results
+are split into pages that can be downloaded in parallel — and become available while the
+job is still running. Use `getBulkQueryResultPages` to list the page URLs, then
+`getResultPage` / `getResultPageStream` to download each one:
+
+```typescript
+import { createWriteStream } from 'fs';
+import { pipeline } from 'stream/promises';
+
+const pages = await bulk.getBulkQueryResultPages(job.id);
+
+await Promise.all(
+  pages.resultChunks.map(async ({ resultLink }, i) => {
+    // Buffered:
+    const response = await bulk.getResultPage(resultLink);
+    console.log(response.data);
+
+    // …or stream a large page straight to disk:
+    const stream = await bulk.getResultPageStream(resultLink);
+    await pipeline(stream, createWriteStream(`results-page-${i}.csv`));
+  }),
+);
+```
+
 ## Ingest Job — Full Lifecycle
 
 Create an ingest job, upload CSV data, and retrieve results:
@@ -171,7 +197,9 @@ const job = await bulk.createDataUploadJobWithData(
 | `getAllBulkQueryJobInfo(config?)` | List all query jobs (with optional filters) |
 | `getBulkQueryResults(jobId, locator?, maxRecords?)` | Get query results as CSV |
 | `getBulkQueryResultsStream(jobId, locator?, maxRecords?)` | Stream query results as a Node.js Readable |
-| `getBulkQueryResultPages(jobId)` | Get result page URLs for parallel download |
+| `getBulkQueryResultPages(jobId)` | Get result chunk links for partial/parallel download |
+| `getResultPage(resultLink)` | Download a single result chunk as CSV |
+| `getResultPageStream(resultLink)` | Stream a single result chunk as a Node.js Readable |
 | `abortBulkQueryJob(jobId)` | Abort a query job |
 | `deleteBulkQueryJob(jobId)` | Delete a query job |
 

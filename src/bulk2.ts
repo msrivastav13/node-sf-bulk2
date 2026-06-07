@@ -18,10 +18,12 @@ export default class BulkAPI2 {
 
     private connection: Connection;
     private endpoint: string;
+    private dataUrl: string;
 
     constructor(connection: Connection) {
         this.connection = connection;
-        this.endpoint = connection.instanceUrl + '/services/data/v' + connection.apiVersion;
+        this.dataUrl = connection.instanceUrl + '/services/data/v' + connection.apiVersion;
+        this.endpoint = this.dataUrl;
         if (this.connection.isTooling) {
             this.endpoint += '/tooling'
         }
@@ -216,6 +218,29 @@ export default class BulkAPI2 {
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         const response = axiosresponse.data as ParallelQueryResultsResponse;
         return response;
+    }
+
+    private resolveResultLink(resultLink: string): string {
+        if (/^https?:\/\//i.test(resultLink)) {
+            return resultLink;
+        }
+        // resultLink is relative to the /services/data/vXX.0 base (e.g. "/jobs/query/{id}/results?locator=...")
+        return this.dataUrl + (resultLink.startsWith('/') ? '' : '/') + resultLink;
+    }
+
+    public async getResultPage(resultLink: string): Promise<AxiosResponse> {
+        const endpoint = this.resolveResultLink(resultLink);
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
+        const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
+        return axiosresponse;
+    }
+
+    public async getResultPageStream(resultLink: string): Promise<Readable> {
+        const endpoint = this.resolveResultLink(resultLink);
+        const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
+        requestConfig.responseType = 'stream';
+        const axiosresponse: AxiosResponse<Readable> = await axois.get(endpoint, requestConfig);
+        return axiosresponse.data;
     }
 
     public async createDataUploadJobWithData(jobUploadRequest: JobUploadRequest, csvData: string): Promise<JobUploadResponse> {

@@ -44,6 +44,20 @@ async function main() {
   console.log('\nResults (CSV):');
   console.log(response.data);
 
+  // Partial / parallel downloads (requires the PartialDownloadAndJobEvent org preference).
+  // List the result pages, then download each one individually.
+  try {
+    const pages = await bulk.getBulkQueryResultPages(job.id);
+    console.log(`\nResult chunks available: ${pages.resultChunks.length}`);
+    for (const [i, { resultLink }] of pages.resultChunks.entries()) {
+      const page = await bulk.getResultPage(resultLink);
+      console.log(`\nChunk ${i} (CSV):`);
+      console.log(page.data);
+    }
+  } catch {
+    console.log('\nPartial downloads not available (org preference disabled).');
+  }
+
   // Clean up
   await bulk.deleteBulkQueryJob(job.id);
   console.log('Job deleted.');

@@ -10,7 +10,7 @@ import { QueryInput } from "./model/queryInput";
 import {JobUploadRequest} from "./model/jobUploadRequest";
 import {JobUploadResponse} from "./model/jobUploadResponse";
 import {JobInfoResponse} from "./model/jobInfoResponse";
-import { ResultPage, ParallelQueryResultsResponse } from "./model/parallelQueryResultsResponse";
+import { ResultChunk, ParallelQueryResultsResponse } from "./model/parallelQueryResultsResponse";
 
 export {
   AllBulkQueryJobsInfoResponse,
@@ -30,7 +30,7 @@ export {
   OPERATION,
   ParallelQueryResultsResponse,
   QueryInput,
-  ResultPage,
+  ResultChunk,
   RESULTTYPE,
   STATE
 };

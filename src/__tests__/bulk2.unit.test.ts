@@ -311,7 +311,11 @@ describe('BulkAPI2', () => {
 
   describe('getBulkQueryResultPages', () => {
     it('GETs /query/{jobId}/resultPages', async () => {
-      const responseData = { resultPages: [{ resultUrl: '/page1' }], nextRecordsUrl: '', done: true };
+      const responseData = {
+        resultChunks: [{ resultLink: '/jobs/query/q1/results?locator=abc' }],
+        nextRecordsUrl: null,
+        done: true,
+      };
       mockedAxios.get.mockResolvedValueOnce(mockResponse(responseData));
 
       const result = await api.getBulkQueryResultPages('q1');
@@ -321,6 +325,73 @@ describe('BulkAPI2', () => {
         expect.any(Object),
       );
       expect(result).toEqual(responseData);
+    });
+  });
+
+  // resultLink values are relative to the /services/data/vXX.0 base (BASE_ENDPOINT without /jobs).
+  const DATA_URL = 'https://example.salesforce.com/services/data/v62.0';
+
+  describe('getResultPage', () => {
+    it('GETs an absolute resultLink as-is', async () => {
+      const resp = mockResponse('Id,Name\n001,Acme');
+      mockedAxios.get.mockResolvedValueOnce(resp);
+
+      const result = await api.getResultPage(`${DATA_URL}/jobs/query/q1/results?locator=abc`);
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${DATA_URL}/jobs/query/q1/results?locator=abc`,
+        expect.any(Object),
+      );
+      expect(result).toEqual(resp);
+    });
+
+    it('resolves a relative resultLink against the /services/data base', async () => {
+      mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
+
+      await api.getResultPage('/jobs/query/q1/results?locator=abc');
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${DATA_URL}/jobs/query/q1/results?locator=abc`,
+        expect.any(Object),
+      );
+    });
+
+    it('inserts a slash for a relative resultLink without a leading slash', async () => {
+      mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
+
+      await api.getResultPage('jobs/query/q1/results?locator=abc');
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${DATA_URL}/jobs/query/q1/results?locator=abc`,
+        expect.any(Object),
+      );
+    });
+
+    it('requests CSV via the accept header', async () => {
+      mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
+
+      await api.getResultPage('/jobs/query/q1/results?locator=abc');
+
+      const config = mockedAxios.get.mock.calls[0][1]!;
+      expect(config.headers?.accept).toBe('text/csv');
+    });
+  });
+
+  describe('getResultPageStream', () => {
+    it('GETs the resultLink with responseType stream', async () => {
+      const fakeStream = new Readable({ read() { this.push(null); } });
+      mockedAxios.get.mockResolvedValueOnce(mockResponse(fakeStream));
+
+      const result = await api.getResultPageStream('/jobs/query/q1/results?locator=abc');
+
+      expect(result).toBe(fakeStream);
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${DATA_URL}/jobs/query/q1/results?locator=abc`,
+        expect.any(Object),
+      );
+      const config = mockedAxios.get.mock.calls[0][1]!;
+      expect(config.responseType).toBe('stream');
+      expect(config.headers?.accept).toBe('text/csv');
     });
   });
 
