@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-06-19
+
+### Security
+
+- Resolved all known dependency vulnerabilities (`npm audit` reports 0):
+  - **`form-data`** (high — [GHSA-hmw2-7cc7-3qxx](https://github.com/advisories/GHSA-hmw2-7cc7-3qxx), CRLF injection) — pinned to `^4.0.6` via an `overrides` entry. This is the only vulnerability that reached published consumers (transitively through `axios`).
+  - **`vite`** (high — [GHSA-fx2h-pf6j-xcff](https://github.com/advisories/GHSA-fx2h-pf6j-xcff) / [GHSA-v6wh-96g9-6wx3](https://github.com/advisories/GHSA-v6wh-96g9-6wx3)) — bumped to `8.0.16` (dev, via `vitest`).
+  - **`markdown-it`** (moderate — [GHSA-6v5v-wf23-fmfq](https://github.com/advisories/GHSA-6v5v-wf23-fmfq)) — bumped to `14.2.0` (dev, via `typedoc`).
+  - **`js-yaml`** (moderate — [GHSA-h67p-54hq-rp68](https://github.com/advisories/GHSA-h67p-54hq-rp68)) — bumped to `4.2.0` (dev, via `eslint`).
+
+### Changed
+
+- Updated `axios` to `^1.17.0`.
+
 ## [0.2.0] - 2026-04-30
 
 ### Added
