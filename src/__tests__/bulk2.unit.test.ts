@@ -312,7 +312,7 @@ describe('BulkAPI2', () => {
   describe('getBulkQueryResultPages', () => {
     it('GETs /query/{jobId}/resultPages', async () => {
       const responseData = {
-        resultChunks: [{ resultLink: '/jobs/query/q1/results?locator=abc' }],
+        resultPages: [{ resultUrl: '/services/data/v62.0/jobs/query/q1/results?locator=abc' }],
         nextRecordsUrl: null,
         done: true,
       };
@@ -328,11 +328,11 @@ describe('BulkAPI2', () => {
     });
   });
 
-  // resultLink values are relative to the /services/data/vXX.0 base (BASE_ENDPOINT without /jobs).
+  // resultPages returns instance-relative resultUrl values ("/services/data/vXX.0/jobs/...").
   const DATA_URL = 'https://example.salesforce.com/services/data/v62.0';
 
   describe('getResultPage', () => {
-    it('GETs an absolute resultLink as-is', async () => {
+    it('GETs an absolute resultUrl as-is', async () => {
       const resp = mockResponse('Id,Name\n001,Acme');
       mockedAxios.get.mockResolvedValueOnce(resp);
 
@@ -345,7 +345,18 @@ describe('BulkAPI2', () => {
       expect(result).toEqual(resp);
     });
 
-    it('resolves a relative resultLink against the /services/data base', async () => {
+    it('resolves an instance-relative resultUrl against the instance URL', async () => {
+      mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
+
+      await api.getResultPage('/services/data/v62.0/jobs/query/q1/results?locator=abc');
+
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `${DATA_URL}/jobs/query/q1/results?locator=abc`,
+        expect.any(Object),
+      );
+    });
+
+    it('resolves a /jobs-relative resultUrl against the /services/data base', async () => {
       mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
 
       await api.getResultPage('/jobs/query/q1/results?locator=abc');
@@ -356,7 +367,7 @@ describe('BulkAPI2', () => {
       );
     });
 
-    it('inserts a slash for a relative resultLink without a leading slash', async () => {
+    it('inserts a slash for a relative resultUrl without a leading slash', async () => {
       mockedAxios.get.mockResolvedValueOnce(mockResponse('csv'));
 
       await api.getResultPage('jobs/query/q1/results?locator=abc');
@@ -378,11 +389,11 @@ describe('BulkAPI2', () => {
   });
 
   describe('getResultPageStream', () => {
-    it('GETs the resultLink with responseType stream', async () => {
+    it('GETs the resultUrl with responseType stream', async () => {
       const fakeStream = new Readable({ read() { this.push(null); } });
       mockedAxios.get.mockResolvedValueOnce(mockResponse(fakeStream));
 
-      const result = await api.getResultPageStream('/jobs/query/q1/results?locator=abc');
+      const result = await api.getResultPageStream('/services/data/v62.0/jobs/query/q1/results?locator=abc');
 
       expect(result).toBe(fakeStream);
       expect(mockedAxios.get).toHaveBeenCalledWith(

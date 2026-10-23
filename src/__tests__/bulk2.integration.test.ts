@@ -111,21 +111,21 @@ describe.skipIf(!canRun)('BulkAPI2 integration', () => {
         console.warn('resultPages unavailable (PartialDownloadAndJobEvent disabled), skipping');
         return;
       }
-      expect(Array.isArray(pages.resultChunks)).toBe(true);
-      if (pages.resultChunks.length === 0) {
-        console.warn('No result chunks returned, skipping page download checks');
+      expect(Array.isArray(pages.resultPages)).toBe(true);
+      if (pages.resultPages.length === 0) {
+        console.warn('No result pages returned, skipping page download checks');
         return;
       }
 
-      const { resultLink } = pages.resultChunks[0];
+      const { resultUrl } = pages.resultPages[0];
 
       // Buffered download
-      const page = await api.getResultPage(resultLink);
+      const page = await api.getResultPage(resultUrl);
       expect(page.status).toBe(200);
       expect(typeof page.data).toBe('string');
 
       // Streamed download
-      const stream = await api.getResultPageStream(resultLink);
+      const stream = await api.getResultPageStream(resultUrl);
       const chunks: Buffer[] = [];
       for await (const chunk of stream) {
         chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));

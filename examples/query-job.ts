@@ -48,10 +48,10 @@ async function main() {
   // List the result pages, then download each one individually.
   try {
     const pages = await bulk.getBulkQueryResultPages(job.id);
-    console.log(`\nResult chunks available: ${pages.resultChunks.length}`);
-    for (const [i, { resultLink }] of pages.resultChunks.entries()) {
-      const page = await bulk.getResultPage(resultLink);
-      console.log(`\nChunk ${i} (CSV):`);
+    console.log(`\nResult pages available: ${pages.resultPages.length}`);
+    for (const [i, { resultUrl }] of pages.resultPages.entries()) {
+      const page = await bulk.getResultPage(resultUrl);
+      console.log(`\nPage ${i} (CSV):`);
       console.log(page.data);
     }
   } catch {

@@ -10,7 +10,7 @@ A Node.js/TypeScript library wrapping the Salesforce Bulk API 2.0. Published to 
 
 - **Build:** `npm run build` (runs `rimraf ./dist && tsc`, outputs CommonJS to `dist/`)
 - **Lint:** `npm run eslint` (ESLint with `@typescript-eslint`)
-- **Dev watch:** `npm run start:dev` (nodemon with ts-node)
+- **Dev watch:** `npm run start:dev` (Node `--watch-path` with ts-node)
 - **Test:** `npm test` (runs all vitest suites once). Also `npm run test:unit`, `npm run test:integration`, and `npm run test:watch`.
 
 ## Tests

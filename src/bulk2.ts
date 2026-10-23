@@ -220,23 +220,27 @@ export default class BulkAPI2 {
         return response;
     }
 
-    private resolveResultLink(resultLink: string): string {
-        if (/^https?:\/\//i.test(resultLink)) {
-            return resultLink;
+    private resolveResultUrl(resultUrl: string): string {
+        if (/^https?:\/\//i.test(resultUrl)) {
+            return resultUrl;
         }
-        // resultLink is relative to the /services/data/vXX.0 base (e.g. "/jobs/query/{id}/results?locator=...")
-        return this.dataUrl + (resultLink.startsWith('/') ? '' : '/') + resultLink;
+        // resultPages returns instance-relative URLs (e.g. "/services/data/v68.0/jobs/query/{id}/results?locator=...")
+        if (resultUrl.startsWith('/services/')) {
+            return this.connection.instanceUrl + resultUrl;
+        }
+        // Otherwise treat it as relative to the /services/data/vXX.0 base (e.g. "/jobs/query/{id}/results?locator=...")
+        return this.dataUrl + (resultUrl.startsWith('/') ? '' : '/') + resultUrl;
     }
 
-    public async getResultPage(resultLink: string): Promise<AxiosResponse> {
-        const endpoint = this.resolveResultLink(resultLink);
+    public async getResultPage(resultUrl: string): Promise<AxiosResponse> {
+        const endpoint = this.resolveResultUrl(resultUrl);
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
         const axiosresponse: AxiosResponse = await axois.get(endpoint, requestConfig);
         return axiosresponse;
     }
 
-    public async getResultPageStream(resultLink: string): Promise<Readable> {
-        const endpoint = this.resolveResultLink(resultLink);
+    public async getResultPageStream(resultUrl: string): Promise<Readable> {
+        const endpoint = this.resolveResultUrl(resultUrl);
         const requestConfig: AxiosRequestConfig = this.getRequestConfig('application/json', 'text/csv');
         requestConfig.responseType = 'stream';
         const axiosresponse: AxiosResponse<Readable> = await axois.get(endpoint, requestConfig);
