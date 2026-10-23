@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-10-23
+
+### Security
+
+- Resolved all known dependency vulnerabilities (`npm audit` reports 0, down from 15):
+  - **`axios`** (high — 22 advisories, including prototype-pollution gadgets [GHSA-mmx7-hfxf-jppx](https://github.com/advisories/GHSA-mmx7-hfxf-jppx), NO_PROXY bypasses [GHSA-44g4-m2mj-wpvx](https://github.com/advisories/GHSA-44g4-m2mj-wpvx), and fetch-adapter redirect SSRF [GHSA-r4gj-5m52-g5wh](https://github.com/advisories/GHSA-r4gj-5m52-g5wh)) — bumped to `^1.20.0`. This is the only vulnerability that reached published consumers.
+  - **`braces`** (high — [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), no patched release) — removed by dropping `nodemon` (dev, via `chokidar@3`).
+  - **`vitest` / `@vitest/mocker`** (moderate — [GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) / [GHSA-qxg6-89mg-rqv8](https://github.com/advisories/GHSA-qxg6-89mg-rqv8)) — bumped to `4.1.12` (dev).
+  - **`vite`**, **`postcss`**, **`nanoid`**, **`source-map-js`**, **`markdown-it`**, **`linkify-it`**, **`js-yaml`**, **`brace-expansion`** (dev, transitive) — updated to patched versions in the lockfile.
+
+### Changed
+
+- Removed the `form-data` override; `axios@1.20.0` already requires `form-data ^4.0.6`.
+- `npm run start:dev` now uses Node's built-in `--watch-path` instead of `nodemon` (`nodemon.json` removed).
+
 ## [1.0.1] - 2026-06-19
 
 ### Security
