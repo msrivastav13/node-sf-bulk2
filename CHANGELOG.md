@@ -12,6 +12,12 @@ All notable changes to this project will be documented in this file.
   - **`vitest` / `@vitest/mocker`** (moderate — [GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) / [GHSA-qxg6-89mg-rqv8](https://github.com/advisories/GHSA-qxg6-89mg-rqv8)) — bumped to `4.1.12` (dev).
   - **`vite`**, **`postcss`**, **`nanoid`**, **`source-map-js`**, **`markdown-it`**, **`linkify-it`**, **`js-yaml`**, **`brace-expansion`** (dev, transitive) — updated to patched versions in the lockfile.
 
+### Fixed
+
+- **`getBulkQueryResultPages` / `getResultPage` / `getResultPageStream`** — the response types added in 1.0.0 did not match the live Bulk API 2.0 `resultPages` response, so `pages.resultChunks` was always `undefined`. Verified against a live org (API v68.0):
+  - `ParallelQueryResultsResponse.resultChunks` → **`resultPages`**, and `ResultChunk { resultLink }` → **`ResultPage { resultUrl }`** (exported from the barrel in place of `ResultChunk`).
+  - `getResultPage` / `getResultPageStream` now resolve instance-relative URLs (`/services/data/vXX.0/jobs/...`, as returned by Salesforce) against `instanceUrl`. Absolute URLs and `/jobs/...`-relative URLs still work as before.
+
 ### Changed
 
 - Removed the `form-data` override; `axios@1.20.0` already requires `form-data ^4.0.6`.

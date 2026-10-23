@@ -118,13 +118,13 @@ import { pipeline } from 'stream/promises';
 const pages = await bulk.getBulkQueryResultPages(job.id);
 
 await Promise.all(
-  pages.resultChunks.map(async ({ resultLink }, i) => {
+  pages.resultPages.map(async ({ resultUrl }, i) => {
     // Buffered:
-    const response = await bulk.getResultPage(resultLink);
+    const response = await bulk.getResultPage(resultUrl);
     console.log(response.data);
 
     // …or stream a large page straight to disk:
-    const stream = await bulk.getResultPageStream(resultLink);
+    const stream = await bulk.getResultPageStream(resultUrl);
     await pipeline(stream, createWriteStream(`results-page-${i}.csv`));
   }),
 );
@@ -198,8 +198,8 @@ const job = await bulk.createDataUploadJobWithData(
 | `getBulkQueryResults(jobId, locator?, maxRecords?)` | Get query results as CSV |
 | `getBulkQueryResultsStream(jobId, locator?, maxRecords?)` | Stream query results as a Node.js Readable |
 | `getBulkQueryResultPages(jobId)` | Get result chunk links for partial/parallel download |
-| `getResultPage(resultLink)` | Download a single result chunk as CSV |
-| `getResultPageStream(resultLink)` | Stream a single result chunk as a Node.js Readable |
+| `getResultPage(resultUrl)` | Download a single result page as CSV |
+| `getResultPageStream(resultUrl)` | Stream a single result page as a Node.js Readable |
 | `abortBulkQueryJob(jobId)` | Abort a query job |
 | `deleteBulkQueryJob(jobId)` | Delete a query job |
 
