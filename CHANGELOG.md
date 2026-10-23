@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.2] - 2026-10-23
+## [2.0.0] - 2026-10-23
+
+### Breaking Changes
+
+- The partial-download result types now match the live API (see **Fixed** below). TypeScript consumers must update:
+  - `ResultChunk` → `ResultPage`, and its `resultLink` field → `resultUrl`.
+  - `ParallelQueryResultsResponse.resultChunks` → `resultPages`.
+
+  Code using the old names could never have worked at runtime (`resultChunks` was always `undefined`), but it will now fail to compile.
 
 ### Security
 
